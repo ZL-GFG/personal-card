@@ -464,10 +464,10 @@
   border: 1px solid transparent;
   background:
     linear-gradient(var(--surface, #121215) 0 100%) padding-box,
-    var(--bg-grad1, radial-gradient(at 80% 55%, #ff6b6b 0px, transparent 50%)) border-box,
-    var(--bg-grad2, radial-gradient(at 20% 45%, #feca57 0px, transparent 50%)) border-box,
-    var(--bg-grad3, radial-gradient(at 50% 5%, #48dbfb 0px, transparent 50%)) border-box,
-    linear-gradient(#8b5cf6 0 100%) border-box;
+    var(--bg-grad1, radial-gradient(at 80% 55%, hsl(0 0% 100% / 40%) 0px, transparent 50%)) border-box,
+    var(--bg-grad2, radial-gradient(at 20% 45%, hsl(0 0% 100% / 40%) 0px, transparent 50%)) border-box,
+    var(--bg-grad3, radial-gradient(at 50% 5%, hsl(0 0% 100% / 40%) 0px, transparent 50%)) border-box,
+    linear-gradient(hsl(0 0% 100% / 60%) 0 100%) border-box;
   opacity: calc((var(--bg-edge-proximity) - var(--bg-color-sensitivity)) / (100 - var(--bg-color-sensitivity)));
   -webkit-mask-image:
     conic-gradient(
@@ -502,13 +502,13 @@
       black 3%, transparent 10%, transparent 90%, black 97%
     );
   box-shadow:
-    inset 0 0 0 1px hsl(45 90% 55% / 80%),
-    inset 0 0 2px 0 hsl(45 90% 55% / 50%),
-    inset 0 0 6px 0 hsl(45 90% 55% / 30%),
-    inset 0 0 12px 0 hsl(45 90% 55% / 20%),
-    0 0 2px 0 hsl(268 80% 75% / 40%),
-    0 0 8px 0 hsl(268 80% 75% / 20%),
-    0 0 18px 0 hsl(268 80% 75% / 10%);
+    inset 0 0 0 1px hsl(0 0% 100% / 80%),
+    inset 0 0 2px 0 hsl(0 0% 100% / 50%),
+    inset 0 0 6px 0 hsl(0 0% 100% / 30%),
+    inset 0 0 12px 0 hsl(0 0% 100% / 20%),
+    0 0 2px 0 hsl(0 0% 100% / 40%),
+    0 0 8px 0 hsl(0 0% 100% / 20%),
+    0 0 18px 0 hsl(0 0% 100% / 10%);
 }
 /* ── Border Glow ── */
 .border-glow {
@@ -550,14 +550,14 @@
   background:
     linear-gradient(var(--surface, #121215) 0 100%) padding-box,
     linear-gradient(rgba(255,255,255,0) 0% 100%) border-box,
-    radial-gradient(at 80% 55%, #ff6b6b 0px, transparent 55%) border-box,
-    radial-gradient(at 69% 34%, #feca57 0px, transparent 55%) border-box,
-    radial-gradient(at 8% 6%, #48dbfb 0px, transparent 55%) border-box,
-    radial-gradient(at 41% 38%, #ff9ff3 0px, transparent 55%) border-box,
-    radial-gradient(at 86% 85%, #54a0ff 0px, transparent 55%) border-box,
-    radial-gradient(at 82% 18%, #a29bfe 0px, transparent 55%) border-box,
-    radial-gradient(at 51% 4%, #1dd1a1 0px, transparent 55%) border-box,
-    linear-gradient(#8b5cf6 0 100%) border-box;
+    radial-gradient(at 80% 55%, hsl(0 0% 100% / 40%) 0px, transparent 55%) border-box,
+    radial-gradient(at 69% 34%, hsl(0 0% 100% / 40%) 0px, transparent 55%) border-box,
+    radial-gradient(at 8% 6%, hsl(0 0% 100% / 40%) 0px, transparent 55%) border-box,
+    radial-gradient(at 41% 38%, hsl(0 0% 100% / 40%) 0px, transparent 55%) border-box,
+    radial-gradient(at 86% 85%, hsl(0 0% 100% / 40%) 0px, transparent 55%) border-box,
+    radial-gradient(at 82% 18%, hsl(0 0% 100% / 40%) 0px, transparent 55%) border-box,
+    radial-gradient(at 51% 4%, hsl(0 0% 100% / 40%) 0px, transparent 55%) border-box,
+    linear-gradient(hsl(0 0% 100% / 60%) 0 100%) border-box;
   opacity: calc((var(--bg-edge-proximity) - var(--bg-color-sensitivity)) / (100 - var(--bg-color-sensitivity)));
   mask-image: conic-gradient(from var(--bg-cursor-angle) at center, black calc(var(--bg-cone-spread) * 1%), transparent calc((var(--bg-cone-spread) + 15) * 1%), transparent calc((100 - var(--bg-cone-spread) - 15) * 1%), black calc((100 - var(--bg-cone-spread)) * 1%));
   -webkit-mask-image: conic-gradient(from var(--bg-cursor-angle) at center, black calc(var(--bg-cone-spread) * 1%), transparent calc((var(--bg-cone-spread) + 15) * 1%), transparent calc((100 - var(--bg-cone-spread) - 15) * 1%), black calc((100 - var(--bg-cone-spread)) * 1%));
@@ -568,14 +568,14 @@
   inset: 0; z-index: -1;
   border: 1px solid transparent;
   background:
-    radial-gradient(at 80% 55%, #ff6b6b 0px, transparent 50%) padding-box,
-    radial-gradient(at 69% 34%, #feca57 0px, transparent 50%) padding-box,
-    radial-gradient(at 8% 6%, #48dbfb 0px, transparent 50%) padding-box,
-    radial-gradient(at 41% 38%, #ff9ff3 0px, transparent 50%) padding-box,
-    radial-gradient(at 86% 85%, #54a0ff 0px, transparent 50%) padding-box,
-    radial-gradient(at 82% 18%, #a29bfe 0px, transparent 50%) padding-box,
-    radial-gradient(at 51% 4%, #1dd1a1 0px, transparent 50%) padding-box,
-    linear-gradient(#8b5cf6 0 100%) padding-box;
+    radial-gradient(at 80% 55%, hsl(0 0% 100% / 40%) 0px, transparent 50%) padding-box,
+    radial-gradient(at 69% 34%, hsl(0 0% 100% / 40%) 0px, transparent 50%) padding-box,
+    radial-gradient(at 8% 6%, hsl(0 0% 100% / 40%) 0px, transparent 50%) padding-box,
+    radial-gradient(at 41% 38%, hsl(0 0% 100% / 40%) 0px, transparent 50%) padding-box,
+    radial-gradient(at 86% 85%, hsl(0 0% 100% / 40%) 0px, transparent 50%) padding-box,
+    radial-gradient(at 82% 18%, hsl(0 0% 100% / 40%) 0px, transparent 50%) padding-box,
+    radial-gradient(at 51% 4%, hsl(0 0% 100% / 40%) 0px, transparent 50%) padding-box,
+    linear-gradient(hsl(0 0% 100% / 60%) 0 100%) padding-box;
   mask-image: linear-gradient(to bottom, black, black), radial-gradient(ellipse at 50% 50%, black 40%, transparent 65%), conic-gradient(from var(--bg-cursor-angle) at center, transparent 5%, black 15%, black 85%, transparent 95%);
   mask-composite: exclude, add, add;
   -webkit-mask-image: linear-gradient(to bottom, black, black), radial-gradient(ellipse at 50% 50%, black 40%, transparent 65%), conic-gradient(from var(--bg-cursor-angle) at center, transparent 5%, black 15%, black 85%, transparent 95%);
@@ -598,17 +598,17 @@
   inset: var(--bg-glow-padding);
   border-radius: inherit;
   box-shadow:
-    inset 0 0 0 1px hsl(45 90% 55% / 100%),
-    inset 0 0 1px 0 hsl(45 90% 55% / 55%),
-    inset 0 0 3px 0 hsl(45 90% 55% / 40%),
-    inset 0 0 6px 0 hsl(45 90% 55% / 25%),
-    inset 0 0 12px 0 hsl(45 90% 55% / 12%),
-    inset 0 0 22px 1px hsl(45 90% 55% / 6%),
-    inset 0 0 40px 2px hsl(45 90% 55% / 4%),
-    0 0 2px 0 hsl(45 90% 55% / 45%),
-    0 0 4px 0 hsl(45 90% 55% / 25%),
-    0 0 10px 0 hsl(45 90% 55% / 12%),
-    0 0 22px 0 hsl(45 90% 55% / 6%);
+    inset 0 0 0 1px hsl(0 0% 100% / 100%),
+    inset 0 0 1px 0 hsl(0 0% 100% / 55%),
+    inset 0 0 3px 0 hsl(0 0% 100% / 40%),
+    inset 0 0 6px 0 hsl(0 0% 100% / 25%),
+    inset 0 0 12px 0 hsl(0 0% 100% / 12%),
+    inset 0 0 22px 1px hsl(0 0% 100% / 6%),
+    inset 0 0 40px 2px hsl(0 0% 100% / 4%),
+    0 0 2px 0 hsl(0 0% 100% / 45%),
+    0 0 4px 0 hsl(0 0% 100% / 25%),
+    0 0 10px 0 hsl(0 0% 100% / 12%),
+    0 0 22px 0 hsl(0 0% 100% / 6%);
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -1468,3 +1468,4 @@ document.addEventListener("keydown", (e) => {
 </script>
 </body>
 </html>
+
