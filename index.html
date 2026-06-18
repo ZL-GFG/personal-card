@@ -54,77 +54,193 @@
 
   .canvas-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 
-  .search-bar-wrap {
+  /* ── Pill Navigation ── */
+  .pill-nav-wrap {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 100;
-    padding: 16px 24px;
-    display: flex;
-    justify-content: center;
-    transition: all 0.35s ease;
-  }
-
-  .search-bar-wrap.scrolled {
-    background: rgba(10, 10, 11, 0.82);
-    backdrop-filter: blur(18px) saturate(120%);
-    -webkit-backdrop-filter: blur(18px) saturate(120%);
-    border-bottom: 1px solid var(--border);
-    padding: 10px 24px;
-  }
-
-  .search-bar {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 4px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 50px;
-    padding: 10px 20px;
-    width: 100%;
-    max-width: 520px;
+    padding: 4px;
+    height: 48px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
     transition: all 0.35s ease;
   }
 
-  .search-bar-wrap.scrolled .search-bar {
-    background: rgba(26, 26, 31, 0.6);
-    max-width: 460px;
-    padding: 8px 18px;
+  .pill-nav-wrap.scrolled {
+    background: rgba(10, 10, 11, 0.85);
+    backdrop-filter: blur(18px) saturate(120%);
+    -webkit-backdrop-filter: blur(18px) saturate(120%);
   }
 
-  .search-bar:focus-within {
-    border-color: var(--border-active);
-    box-shadow: 0 0 0 3px var(--accent-glow);
+  .pill-logo-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+  }
+  .pill-logo-link:hover { transform: scale(1.08); }
+  .pill-logo-svg { width: 20px; height: 20px; display: block; }
+
+  .pill-list {
+    list-style: none;
+    display: flex;
+    align-items: stretch;
+    gap: 3px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
   }
 
-  .search-icon { color: var(--text-muted); font-size: 0.85rem; flex-shrink: 0; }
+  .pill-list > li { display: flex; height: 100%; }
 
-  .search-input {
-    flex: 1;
-    background: none;
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 18px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease;
+    background: transparent;
     border: none;
-    outline: none;
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    font-weight: 300;
-    letter-spacing: 0.03em;
-    min-width: 0;
+    cursor: pointer;
   }
 
-  .search-input::placeholder { color: var(--text-muted); font-weight: 300; }
+  .pill:hover { color: var(--accent); }
 
-  .search-shortcut {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    color: var(--text-muted);
-    letter-spacing: 0.08em;
-    padding: 2px 8px;
+  .pill-circle {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    transform: translateX(-50%) scale(0);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .pill:hover .pill-circle { transform: translateX(-50%) scale(30); }
+  .pill:active .pill-circle { transform: translateX(-50%) scale(25); }
+
+  .pill-label-stack {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    z-index: 1;
+    overflow: hidden;
+    height: 1em;
+  }
+  .pill-label {
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .pill:hover .pill-label { transform: translateY(-130%); }
+
+  .pill-label-hover {
+    position: absolute;
+    left: 0;
+    top: 130%;
+    display: block;
+    color: #fff;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .pill:hover .pill-label-hover { transform: translateY(-130%); }
+
+  /* Mobile */
+  .pill-mobile-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--surface-raised);
     border: 1px solid var(--border);
-    border-radius: 4px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 0;
     flex-shrink: 0;
   }
+  .pill-mobile-btn .hamburger-line {
+    width: 16px;
+    height: 2px;
+    background: var(--text-secondary);
+    border-radius: 1px;
+    transition: all 0.3s ease;
+  }
+  .pill-mobile-btn.open .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translateY(4px);
+  }
+  .pill-mobile-btn.open .hamburger-line:nth-child(2) {
+    transform: rotate(-45deg) translateY(-4px);
+  }
+
+  .pill-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px;
+    left: 16px;
+    right: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 4px;
+    z-index: 99;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .pill-mobile-menu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .pill-mobile-link {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 20px;
+    transition: background 0.2s ease;
+  }
+  .pill-mobile-link:hover { background: var(--accent-glow); color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .pill-nav-wrap { left: 16px; right: 16px; transform: none; }
+    .pill-list { display: none; }
+    .pill-mobile-btn { display: flex; }
+    .pill-mobile-menu { display: block; }
+  }
+
 
   .hero {
     display: flex;
@@ -439,8 +555,6 @@
   @media (max-width: 768px) {
     .hero { min-height: 60vh; padding: 3rem 1.5rem; }
     .section { padding: 3rem 1.5rem; }
-    .search-bar-wrap { padding: 12px 16px; }
-    .search-bar-wrap.scrolled { padding: 8px 16px; }
   }
 .border-glow::before,
 .border-glow::after {
@@ -618,13 +732,54 @@
 <canvas class="canvas-bg" id="bgCanvas"></canvas>
 <canvas class="canvas-bg" id="colorBendsCanvas" style="z-index:-1"></canvas>
 
-<div class="search-bar-wrap" id="searchWrap">
-  <div class="search-bar">
-    <span class="search-icon">?</span>
-    <input type="text" class="search-input" id="searchInput" placeholder="搜索名片内容…" autocomplete="off">
-    <span class="search-shortcut">?K</span>
-  </div>
+<nav class="pill-nav-wrap" id="pillNav">
+  <a href="#" class="pill-logo-link" aria-label="返回顶部">
+    <svg class="pill-logo-svg" viewBox="0 0 32 32" fill="none">
+      <rect width="32" height="32" rx="16" fill="var(--accent)"/>
+      <text x="16" y="22" text-anchor="middle" fill="white" font-size="14" font-weight="700">ZM</text>
+    </svg>
+  </a>
+  <ul class="pill-list" role="menubar">
+    <li role="none">
+      <a href="#about" class="pill" role="menuitem">
+        <span class="pill-circle" aria-hidden="true"></span>
+        <span class="pill-label-stack">
+          <span class="pill-label">关于</span>
+          <span class="pill-label-hover" aria-hidden="true">关于</span>
+        </span>
+      </a>
+    </li>
+    <li role="none">
+      <a href="#skills" class="pill" role="menuitem">
+        <span class="pill-circle" aria-hidden="true"></span>
+        <span class="pill-label-stack">
+          <span class="pill-label">擅长领域</span>
+          <span class="pill-label-hover" aria-hidden="true">擅长领域</span>
+        </span>
+      </a>
+    </li>
+    <li role="none">
+      <a href="#contact" class="pill" role="menuitem">
+        <span class="pill-circle" aria-hidden="true"></span>
+        <span class="pill-label-stack">
+          <span class="pill-label">联系方式</span>
+          <span class="pill-label-hover" aria-hidden="true">联系方式</span>
+        </span>
+      </a>
+    </li>
+  </ul>
+  <button class="pill-mobile-btn" id="pillMobileBtn" aria-label="菜单">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+</nav>
+<div class="pill-mobile-menu" id="pillMobileMenu">
+  <a href="#about" class="pill-mobile-link">关于</a>
+  <a href="#skills" class="pill-mobile-link">擅长领域</a>
+  <a href="#contact" class="pill-mobile-link">联系方式</a>
 </div>
+
+
 
 <header class="hero">
   <span class="hero-label">Digital Card</span>
@@ -638,7 +793,7 @@
   </div>
 </header>
 
-<section class="section" data-reveal>
+<section class="section" id="about" data-reveal>
   <div class="section-header">关于</div>
   <p class="bio-text">
     十年产品设计经验，专注<em>数字品牌</em>与<em>交互体验</em>。
@@ -647,7 +802,7 @@
   </p>
 </section>
 
-<section class="section" data-reveal>
+<section class="section" id="skills" data-reveal>
   <div class="section-header">擅长领域</div>
   <div class="skills-grid">
     <span class="skill-pill border-glow" data-searchable>UI/UX 设计</span>
@@ -662,7 +817,7 @@
   </div>
 </section>
 
-<section class="section" data-reveal>
+<section class="section" id="contact" data-reveal>
   <div class="section-header">联系方式</div>
   <ul class="contact-list">
     <li class="contact-item border-glow"><a href="#" class="copy-link" data-copy="mingyuan@example.com" title="点击复制"><span class="contact-icon">?</span> mingyuan@example.com <span class="copy-hint">点击复制</span></a></li>
@@ -753,68 +908,52 @@ document.addEventListener("keydown", (e) => {
 
   revealEls.forEach(el => observer.observe(el));
 
-  const searchWrap = document.getElementById("searchWrap");
+  /* ── Pill Navigation ── */
+  const pillNav = document.getElementById("pillNav");
+  const pillMobileBtn = document.getElementById("pillMobileBtn");
+  const pillMobileMenu = document.getElementById("pillMobileMenu");
+  const pills = pillNav.querySelectorAll(".pill");
   let scrollTicking = false;
 
   function onScroll() {
     if (!scrollTicking) {
       requestAnimationFrame(() => {
-        searchWrap.classList.toggle("scrolled", window.scrollY > 30);
+        pillNav.classList.toggle("scrolled", window.scrollY > 30);
         scrollTicking = false;
       });
       scrollTicking = true;
     }
   }
-
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  const searchInput = document.getElementById("searchInput");
-  const searchable = document.querySelectorAll("[data-searchable]");
-  let searchTimeout;
+  /* Mobile menu toggle */
+  pillMobileBtn.addEventListener("click", () => {
+    const open = pillMobileBtn.classList.toggle("open");
+    pillMobileMenu.classList.toggle("open", open);
+  });
 
-  function clearHighlights() {
-    searchable.forEach(el => {
-      el.style.borderColor = "";
-      el.style.color = "";
-      el.style.background = "";
-      el.style.transform = "";
+  /* Close mobile menu on link click */
+  pillMobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      pillMobileBtn.classList.remove("open");
+      pillMobileMenu.classList.remove("open");
     });
-  }
+  });
 
-  function performSearch(term) {
-    clearHighlights();
-    const q = term.toLowerCase().trim();
-    if (!q) return;
-    let firstMatch = null;
-    searchable.forEach(el => {
-      if (el.textContent.toLowerCase().includes(q)) {
-        el.style.borderColor = "var(--border-active)";
-        el.style.color = "var(--accent)";
-        el.style.background = "var(--accent-glow)";
-        el.style.transform = "translateY(-2px)";
-        if (!firstMatch) firstMatch = el;
+  /* Smooth scroll for all pill nav links */
+  document.querySelectorAll('.pill-nav-wrap .pill, .pill-mobile-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
     });
-    if (firstMatch) firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
-
-  searchInput.addEventListener("input", () => {
-    clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => performSearch(searchInput.value), 250);
   });
 
-  document.addEventListener("keydown", (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-      e.preventDefault();
-      searchInput.focus();
-      searchInput.select();
-    }
-    if (e.key === "Escape" && document.activeElement === searchInput) {
-      searchInput.blur();
-      searchInput.value = "";
-      clearHighlights();
-    }
-  });
 })();
 </script>
 
